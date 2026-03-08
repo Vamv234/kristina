@@ -42,7 +42,6 @@
     const navDots = document.getElementById('navDots');
     const startBtn = document.getElementById('startJourney');
     const openSecretBtn = document.getElementById('openSecret');
-    const backToPasswordBtn = document.getElementById('backToPassword');
     const secretInput = document.getElementById('secretPassword');
     const secretError = document.getElementById('secretError');
     const secretGallery = document.getElementById('secretGallery');
@@ -53,8 +52,7 @@
         1: document.getElementById('page1'),
         2: document.getElementById('page2'),
         3: document.getElementById('page3'),
-        4: document.getElementById('page4'),
-        5: document.getElementById('page5')
+        4: document.getElementById('page4')
     };
 
     // Рендер аккордеона
@@ -216,9 +214,9 @@
         if (pass === '2308') {
             secretUnlocked = true;
             secretError.textContent = '';
+            secretGallery.style.display = 'block';
             secretGallery.classList.add('show');
             renderSecretGallery();
-            setActivePage(5);
             return;
         }
         secretError.textContent = 'Неверный пароль. Попробуй ещё раз.';
@@ -226,10 +224,6 @@
 
     // Навигация
     function setActivePage(pageNum) {
-        if (pageNum === 5 && !secretUnlocked) {
-            pageNum = 4;
-        }
-
         Object.values(pages).forEach(p => p.classList.remove('active'));
         pages[pageNum].classList.add('active');
         
@@ -279,12 +273,6 @@
     if (openSecretBtn) {
         openSecretBtn.addEventListener('click', () => {
             unlockSecret();
-        });
-    }
-
-    if (backToPasswordBtn) {
-        backToPasswordBtn.addEventListener('click', () => {
-            setActivePage(4);
         });
     }
 
