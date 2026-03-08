@@ -826,8 +826,10 @@ h2 {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     opacity: 0;
     transform: translateY(28px) scale(0.96);
-    animation: secretPhotoIn 0.7s ease forwards;
-    animation-delay: var(--delay, 0ms);
+}
+
+.secret-photo.is-visible {
+    animation: secretPhotoIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .secret-photo img {

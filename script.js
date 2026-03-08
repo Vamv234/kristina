@@ -203,10 +203,16 @@
     // Рендер фото в секретном разделе
     function renderSecretGallery() {
         secretGrid.innerHTML = secretPhotos.map((photo, index) => `
-            <figure class="secret-photo" style="--delay:${index * 90}ms">
+            <figure class="secret-photo" data-index="${index}">
                 <img src="${photo}" alt="Наше фото ${index + 1}" loading="lazy" onerror="this.closest('figure').classList.add('missing')">
             </figure>
         `).join('');
+
+        secretGrid.querySelectorAll('.secret-photo').forEach((photoEl, idx) => {
+            setTimeout(() => {
+                photoEl.classList.add('is-visible');
+            }, idx * 120);
+        });
     }
 
     // Проверка пароля секретного раздела
