@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Кристюши 💐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Полупрозрачные тюльпаны на фоне -->
+    <div class="tulips-bg">
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+        <div class="tulip">🌷</div>
+    </div>
+
+    <div class="app">
+        <!-- Навигационные точки (скрыты на нулевой странице) -->
+        <div class="nav-dots" id="navDots">
+            <div class="dot" data-page="0"></div>
+            <div class="dot" data-page="1"></div>
+            <div class="dot" data-page="2"></div>
+            <div class="dot" data-page="3"></div>
+        </div>
+
+        <!-- СТРАНИЦА 0: Приветствие -->
+        <div id="page0" class="page active">
+            <div class="welcome-content">
+                <h1 class="welcome-title animate-glitch">
+                    Кристюша, с 8 Марта! ❤️
+                </h1>
+                
+                <div class="welcome-message glass-effect">
+                    <p class="animate-text-reveal">
+                        я сделал этот мини-сайт специально для тебя
+                    </p>
+                    <p class="animate-text-reveal delay-1">
+                        листай дальше, чтобы открыть поздравление
+                    </p>
+                </div>
+
+                <button id="startJourney" class="start-btn">
+                    <span class="btn-text">Открыть поздравление</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 1: Поздравление + причины -->
+        <div id="page1" class="page">
+            <div class="greeting-block animate-fade-in">
+                <h1 class="glitch-text">
+                    С 8 Марта, солнышко
+                    <span>🌷</span>
+                </h1>
+            </div>
+
+            <div class="accordion" id="accordion">
+                <!-- 7 причин будут добавлены через js -->
+            </div>
+
+            <button id="nextToGame" class="next-btn" style="display: none;">
+                Перейти к игре 🌸
+                <span class="btn-arrow">→</span>
+            </button>
+        </div>
+
+        <!-- СТРАНИЦА 2: Игра мемори -->
+        <div id="page2" class="page">
+            <h2 class="page-title animate-slide-up">🌼 Найди пару</h2>
+            
+            <div class="game-stats glass-effect">
+                <span id="pairs-found">0</span>/4 пар
+                <button class="reset-btn" id="reset-game">
+                    <span class="reset-icon">↻</span>
+                    Заново
+                </button>
+            </div>
+            
+            <div class="grid" id="game-grid"></div>
+            
+            <div id="win-message" class="win-message"></div>
+            
+            <button id="nextToGallery" class="next-btn" style="display: none;">
+                Перейти к тёплым словам ❤️
+                <span class="btn-arrow">→</span>
+            </button>
+        </div>
+
+        <!-- СТРАНИЦА 3: Поздравления -->
+        <div id="page3" class="page">
+            <h2 class="page-title animate-slide-up">💌 для любимой зайки</h2>
+
+            <div class="mom-letter">
+                <div class="sparkles-line">✨ 💐 ✨</div>
+
+                <p class="letter-line line-1">
+                    Кристина, поздравляю тебя с 8 Марта!
+                </p>
+                <p class="letter-line line-2">
+                    Пусть каждый твой день будет наполнен радостью, нежностью и тёплыми моментами.
+                </p>
+                <p class="letter-line line-3">
+                    Желаю тебе сиять ещё ярче, легко идти к мечтам и всегда чувствовать мою любовь рядом.
+                </p>
+                <p class="letter-line line-4">
+                    Спасибо, что ты есть у меня. <span class="tight-ty">Ты</span> делаешь мою жизнь по-настоящему счастливой.
+                </p>
+
+                <div class="letter-signature">С любовью, твой любимый Влад ❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
