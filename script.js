@@ -212,7 +212,7 @@
 
     // Проверка пароля секретного раздела
     function unlockSecret() {
-        const pass = secretInput.value.trim();
+        const pass = secretInput.value.replace(/\D/g, '');
         if (pass === '2308') {
             secretUnlocked = true;
             secretError.textContent = '';
@@ -267,24 +267,34 @@
         setActivePage(3);
     });
 
-    nextToSecretBtn.addEventListener('click', () => {
-        setActivePage(4);
-        secretInput.focus();
-    });
+    if (nextToSecretBtn) {
+        nextToSecretBtn.addEventListener('click', () => {
+            setActivePage(4);
+            if (secretInput) {
+                secretInput.focus();
+            }
+        });
+    }
 
-    openSecretBtn.addEventListener('click', () => {
-        unlockSecret();
-    });
-
-    backToPasswordBtn.addEventListener('click', () => {
-        setActivePage(4);
-    });
-
-    secretInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+    if (openSecretBtn) {
+        openSecretBtn.addEventListener('click', () => {
             unlockSecret();
-        }
-    });
+        });
+    }
+
+    if (backToPasswordBtn) {
+        backToPasswordBtn.addEventListener('click', () => {
+            setActivePage(4);
+        });
+    }
+
+    if (secretInput) {
+        secretInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                unlockSecret();
+            }
+        });
+    }
 
     document.getElementById('reset-game').addEventListener('click', () => {
         initGame();
