@@ -12,15 +12,14 @@
 
     const flowerEmojis = ['🌷', '🌹', '🌸', '🌼', '🌷', '🌹', '🌸', '🌼'];
     const secretPhotos = [
-        'assets/secret/photo1.jpg',
-        'assets/secret/photo2.jpg',
-        'assets/secret/photo3.jpg',
-        'assets/secret/photo4.jpg',
-        'assets/secret/photo5.jpg',
-        'assets/secret/photo6.jpg',
-        'assets/secret/photo7.jpg',
-        'assets/secret/photo8.jpg',
-        'assets/secret/photo9.jpg'
+        'assets/secret/0E66A19E-C168-4ADA-B097-B10AD94246E1.jpeg',
+        'assets/secret/26B422F3-C48B-4CD1-9526-F35388420210.jpeg',
+        'assets/secret/4CF2506C-0286-49BF-9C16-41E0BF8BC895.jpeg',
+        'assets/secret/7AEF2DAA-515F-4126-B9D1-A6463CE3F8F3.jpeg',
+        'assets/secret/9DCE7B9E-DD46-4C5E-B2FE-D88339D7C4D5.jpeg',
+        'assets/secret/C6FA8756-8E7E-4DE8-B8D7-B2DCD60658E8.jpeg',
+        'assets/secret/CA0A5850-0202-4EA5-852E-5A4548D6A827.jpeg',
+        'assets/secret/D58093CD-EA24-4860-8E0C-CD3233EE7759.jpeg'
     ];
     
     // Состояние
@@ -43,6 +42,7 @@
     const navDots = document.getElementById('navDots');
     const startBtn = document.getElementById('startJourney');
     const openSecretBtn = document.getElementById('openSecret');
+    const backToPasswordBtn = document.getElementById('backToPassword');
     const secretInput = document.getElementById('secretPassword');
     const secretError = document.getElementById('secretError');
     const secretGallery = document.getElementById('secretGallery');
@@ -53,7 +53,8 @@
         1: document.getElementById('page1'),
         2: document.getElementById('page2'),
         3: document.getElementById('page3'),
-        4: document.getElementById('page4')
+        4: document.getElementById('page4'),
+        5: document.getElementById('page5')
     };
 
     // Рендер аккордеона
@@ -215,9 +216,9 @@
         if (pass === '2308') {
             secretUnlocked = true;
             secretError.textContent = '';
-            secretGallery.style.display = 'block';
             secretGallery.classList.add('show');
             renderSecretGallery();
+            setActivePage(5);
             return;
         }
         secretError.textContent = 'Неверный пароль. Попробуй ещё раз.';
@@ -225,6 +226,10 @@
 
     // Навигация
     function setActivePage(pageNum) {
+        if (pageNum === 5 && !secretUnlocked) {
+            pageNum = 4;
+        }
+
         Object.values(pages).forEach(p => p.classList.remove('active'));
         pages[pageNum].classList.add('active');
         
@@ -269,6 +274,10 @@
 
     openSecretBtn.addEventListener('click', () => {
         unlockSecret();
+    });
+
+    backToPasswordBtn.addEventListener('click', () => {
+        setActivePage(4);
     });
 
     secretInput.addEventListener('keydown', (e) => {
