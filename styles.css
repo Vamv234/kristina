@@ -814,7 +814,7 @@ h2 {
 
 .secret-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
 }
 
@@ -907,6 +907,10 @@ h2 {
     .tulip {
         opacity: 0.08;
     }
+
+    .secret-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -984,6 +988,10 @@ h2 {
     .tulip {
         font-size: 34px;
         opacity: 0.06;
+    }
+
+    .secret-grid {
+        grid-template-columns: 1fr;
     }
 
 }

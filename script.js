@@ -14,6 +14,7 @@
     const secretPhotos = [
         'assets/secret/0E66A19E-C168-4ADA-B097-B10AD94246E1.jpeg',
         'assets/secret/26B422F3-C48B-4CD1-9526-F35388420210.jpeg',
+        'assets/secret/29BE9008-E0B0-405D-8AB3-418C922BFC24.jpeg',
         'assets/secret/4CF2506C-0286-49BF-9C16-41E0BF8BC895.jpeg',
         'assets/secret/7AEF2DAA-515F-4126-B9D1-A6463CE3F8F3.jpeg',
         'assets/secret/9DCE7B9E-DD46-4C5E-B2FE-D88339D7C4D5.jpeg',
