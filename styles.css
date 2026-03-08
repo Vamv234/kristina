@@ -478,6 +478,10 @@ h2 {
     transform: translateX(5px);
 }
 
+.secret-entry-btn {
+    margin-top: 28px;
+}
+
 /* Игра */
 .glass-effect {
     background: rgba(255, 255, 255, 0.6);
@@ -751,6 +755,118 @@ h2 {
     animation: signatureReveal 1s ease 3.4s forwards;
 }
 
+/* СТРАНИЦА 4: Секретный раздел */
+.secret-panel {
+    border-radius: 28px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.secret-subtitle {
+    color: #5c4f49;
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+}
+
+.secret-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.secret-input {
+    width: 100%;
+    border: 1px solid #d9c4b8;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.85);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secret-input:focus {
+    border-color: #b35e5e;
+    box-shadow: 0 0 0 3px rgba(179, 94, 94, 0.14);
+}
+
+.secret-open-btn {
+    margin-top: 0;
+}
+
+.secret-error {
+    min-height: 20px;
+    margin-top: 10px;
+    color: #b54848;
+    font-size: 0.95rem;
+}
+
+.secret-gallery {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.secret-gallery.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.secret-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.secret-photo {
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f0e7e2;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+    animation: secretPhotoIn 0.7s ease forwards;
+    animation-delay: var(--delay, 0ms);
+}
+
+.secret-photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.secret-photo:hover img {
+    transform: scale(1.04);
+}
+
+.secret-photo.missing::before {
+    content: 'Фото не найдено';
+    display: grid;
+    place-items: center;
+    height: 180px;
+    color: #8e7c73;
+    font-size: 0.95rem;
+}
+
+.secret-photo.missing img {
+    display: none;
+}
+
+@keyframes secretPhotoIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @keyframes writeIn {
     0% {
         opacity: 0;
@@ -781,13 +897,60 @@ h2 {
 }
 
 /* Адаптивность */
+@media (max-width: 1024px) {
+    .app {
+        max-width: 720px;
+        border-radius: 38px;
+        padding: 28px 20px;
+    }
+
+    .tulip {
+        opacity: 0.08;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .app {
+        max-width: 100%;
+        border-radius: 30px;
+        padding: 22px 16px;
+    }
+
+    h1 {
+        font-size: 1.95rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .welcome-message p {
+        font-size: 1.1rem;
+    }
+
+    .tulip {
+        font-size: 46px;
+        opacity: 0.07;
+    }
+
+    .secret-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
 @media (max-width: 480px) {
     .app {
-        padding: 24px 16px;
+        padding: 18px 12px;
+        border-radius: 24px;
     }
     
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .grid {
@@ -795,7 +958,7 @@ h2 {
     }
     
     .card {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .mom-letter {
@@ -811,15 +974,16 @@ h2 {
     }
     
     .welcome-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .welcome-message p {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .tulip {
-        font-size: 40px;
+        font-size: 34px;
+        opacity: 0.06;
     }
 
 }

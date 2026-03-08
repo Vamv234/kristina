@@ -11,6 +11,17 @@
     ];
 
     const flowerEmojis = ['🌷', '🌹', '🌸', '🌼', '🌷', '🌹', '🌸', '🌼'];
+    const secretPhotos = [
+        'assets/secret/photo1.jpg',
+        'assets/secret/photo2.jpg',
+        'assets/secret/photo3.jpg',
+        'assets/secret/photo4.jpg',
+        'assets/secret/photo5.jpg',
+        'assets/secret/photo6.jpg',
+        'assets/secret/photo7.jpg',
+        'assets/secret/photo8.jpg',
+        'assets/secret/photo9.jpg'
+    ];
     
     // Состояние
     let openedReasons = new Array(7).fill(false);
@@ -18,23 +29,31 @@
     let flippedIndices = [];
     let locked = false;
     let matchedCount = 0;
+    let secretUnlocked = false;
     
     // DOM элементы
     const accordion = document.getElementById('accordion');
     const nextToGameBtn = document.getElementById('nextToGame');
     const nextToGalleryBtn = document.getElementById('nextToGallery');
+    const nextToSecretBtn = document.getElementById('nextToSecret');
     const gridEl = document.getElementById('game-grid');
     const pairsSpan = document.getElementById('pairs-found');
     const winMsg = document.getElementById('win-message');
     const dots = document.querySelectorAll('.dot');
     const navDots = document.getElementById('navDots');
     const startBtn = document.getElementById('startJourney');
+    const openSecretBtn = document.getElementById('openSecret');
+    const secretInput = document.getElementById('secretPassword');
+    const secretError = document.getElementById('secretError');
+    const secretGallery = document.getElementById('secretGallery');
+    const secretGrid = document.getElementById('secretGrid');
     
     const pages = {
         0: document.getElementById('page0'),
         1: document.getElementById('page1'),
         2: document.getElementById('page2'),
-        3: document.getElementById('page3')
+        3: document.getElementById('page3'),
+        4: document.getElementById('page4')
     };
 
     // Рендер аккордеона
@@ -181,6 +200,29 @@
         renderBoard();
     }
 
+    // Рендер фото в секретном разделе
+    function renderSecretGallery() {
+        secretGrid.innerHTML = secretPhotos.map((photo, index) => `
+            <figure class="secret-photo" style="--delay:${index * 90}ms">
+                <img src="${photo}" alt="Наше фото ${index + 1}" loading="lazy" onerror="this.closest('figure').classList.add('missing')">
+            </figure>
+        `).join('');
+    }
+
+    // Проверка пароля секретного раздела
+    function unlockSecret() {
+        const pass = secretInput.value.trim();
+        if (pass === '2308') {
+            secretUnlocked = true;
+            secretError.textContent = '';
+            secretGallery.style.display = 'block';
+            secretGallery.classList.add('show');
+            renderSecretGallery();
+            return;
+        }
+        secretError.textContent = 'Неверный пароль. Попробуй ещё раз.';
+    }
+
     // Навигация
     function setActivePage(pageNum) {
         Object.values(pages).forEach(p => p.classList.remove('active'));
@@ -218,6 +260,21 @@
 
     nextToGalleryBtn.addEventListener('click', () => {
         setActivePage(3);
+    });
+
+    nextToSecretBtn.addEventListener('click', () => {
+        setActivePage(4);
+        secretInput.focus();
+    });
+
+    openSecretBtn.addEventListener('click', () => {
+        unlockSecret();
+    });
+
+    secretInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            unlockSecret();
+        }
     });
 
     document.getElementById('reset-game').addEventListener('click', () => {
